@@ -1,14 +1,27 @@
-#N canvas 710 189 442 279 12;
-#X obj 62 184 print;
-#X text 119 185 Output is in the printout window.;
-#X obj 74 24 bang;
-#X msg 74 113 walk the cat;
-#X msg 62 81 45;
-#X obj 62 154 bang;
-#X text 179 238 updated for Pd version 0.27;
-#X text 192 94 Outputs a "bang" message for whatever message it receives.
+#N canvas 716 29 454 374 12;
+#X obj 90 213 print;
+#X msg 113 113 walk the cat;
+#X msg 90 82 45;
+#X obj 90 155 bang;
+#X text 235 143 Outputs a "bang" message for whatever message it receives.
 , f 25;
-#X text 120 23 - send "bang" message;
-#X connect 3 0 5 0;
-#X connect 4 0 5 0;
-#X connect 5 0 0 0;
+#X obj 1 1 cnv 15 450 50 empty empty empty 20 12 0 14 -245500 -66577
+0;
+#X obj 20 16 bang;
+#X text 63 16 — convert any message to a bang;
+#X obj 139 213 bng 18 100 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X text 259 335 Updated for Pd version 0.27;
+#X obj 125 274 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X text 18 273 The GUI control;
+#X msg 379 273 bang;
+#X text 17 294 have the same effect \, but also send bangs when clicked.
+;
+#X text 139 273 \, written as [bng] \, and the message;
+#X floatatom 43 113 5 0 0 0 - - -;
+#X connect 1 0 3 0;
+#X connect 2 0 3 0;
+#X connect 3 0 0 0;
+#X connect 3 0 8 0;
+#X connect 15 0 3 0;

@@ -1,26 +1,55 @@
-#N canvas 531 220 512 412 12;
-#X msg 44 107 bang;
-#X text 134 244 creation argument initializes the value;
-#X text 271 372 updated for Pd version 0.45;
-#X text 89 104 output the value;
-#X text 153 130 set and output the value;
-#X obj 43 241 symbol foo;
-#X obj 69 12 symbol;
-#X text 125 14 - STORE A SYMBOL (I.E. \, STRING);
-#X text 35 37 The symbol object stores a symbol \, Pd's data type for
-handling fixed strings (often filenames or the names of other objects
+#N canvas 182 51 563 690 12;
+#X msg 44 137 bang;
+#X text 368 652 updated for Pd version 0.45;
+#X obj 43 461 symbol foo;
+#X msg 54 163 symbol bar;
+#X symbolatom 43 489 10 0 0 0 - - -;
+#X msg 64 191 zorglub;
+#X obj 1 1 cnv 15 560 50 empty empty empty 20 12 0 14 -245500 -66577
+0;
+#X obj 21 17 symbol;
+#X text 76 17 — store a symbol (string);
+#X text 18 69 The symbol object stores a symbol \, Pd's data type for
+handling fixed strings. (often filenames or the names of other objects
 in pd).;
-#X msg 58 131 symbol bar;
-#X symbolatom 44 269 10 0 0 0 - - -;
-#X text 186 213 set the value;
-#X symbolatom 110 215 10 0 0 0 - - -;
-#X msg 64 161 zorglub;
-#X text 133 161 any other message is 'converted';
-#X text 62 303 note: unlike "float" \, etc. \, there's no "s" message
-to forward to another object -- that would conflict with the function
-of converting arbitrary messages to symbols.;
-#X connect 0 0 5 0;
-#X connect 5 0 10 0;
-#X connect 9 0 5 0;
-#X connect 12 0 5 1;
-#X connect 13 0 5 0;
+#X text 89 137 Bang to the first inlet outputs the current value.;
+#X text 142 163 Incoming symbols set then output the current value.
+;
+#X msg 91 246 6;
+#X text 126 461 The creation argument initializes the value.;
+#X text 131 191 Any other message is converted to a symbol.;
+#X text 132 218 Incoming lists convert the first atom to a symbol.
+;
+#X text 124 246 Numeric values are converted to the symbol "float"
+;
+#X obj 109 337 makefilename %f;
+#X text 106 278 To store numeric values as symbols \, convert them
+to symbols with [makefilename];
+#X floatatom 109 314 5 0 0 0 - - -;
+#X obj 43 509 bng 12 50 50 0 empty empty (updated) 16 6 0 9 -262144
+-1 -1;
+#X msg 80 218 A B C;
+#X text 21 652 See also:;
+#X obj 95 652 int;
+#X text 21 540 Unlike [float] \, [int] \, etc. \, [symbol] doesn’t
+respond to "send" messages by forwarding to named objects \, as that
+would conflict with the function of converting arbitrary messages to
+symbols.;
+#X text 21 604 Also unlike [float] \, [int] etc. \, [symbol] cannot
+be abbreviated to [s] as that’s the abbreviation for [send].;
+#X obj 130 652 float;
+#X obj 179 652 makefilename;
+#X msg 119 423 symbol bulgroz;
+#X text 116 375 The second inlet sets the value without outputting
+it. This inlet doesn’t perform the same conversion as the first inlet
+\, so only valid symbols are accepted!;
+#X connect 0 0 2 0;
+#X connect 2 0 4 0;
+#X connect 3 0 2 0;
+#X connect 4 0 20 0;
+#X connect 5 0 2 0;
+#X connect 12 0 2 0;
+#X connect 17 0 2 0;
+#X connect 19 0 17 0;
+#X connect 21 0 2 0;
+#X connect 28 0 2 1;
